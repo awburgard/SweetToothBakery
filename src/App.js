@@ -1,29 +1,24 @@
 import theme from "./components/theme";
 
-import {
-  ThemeProvider,
-  Typography,
-  Container,
-  Divider,
-} from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
 
 import Navigation from "./components/Appbar";
 import MainLanding from "./Main";
+import Contact from "./Contact";
+import About from "./About";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <Navigation />
-      <Divider />
-      <main>
-        <MainLanding />
-      </main>
-      <Switch>
-        <Route exact from="/" render={(props) => <div>Home</div>} />
-        <Route exact path="/contact" render={(props) => <div>contact</div>} />
-        <Route exact path="/about" render={(props) => <div>about</div>} />
-      </Switch>
+      {/* <Switch>
+        <Route exact path="/" component={MainLanding} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/about" component={About} />
+      </Switch> */}
+      <MainLanding />
+      <About />
     </ThemeProvider>
   );
 }

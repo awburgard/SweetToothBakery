@@ -10,7 +10,7 @@ import Menu from "@material-ui/core/Menu";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "0",
   },
   toolBar: {
-    width: "100%",
     padding: "0px 30px",
     margin: "0",
     maxWidth: 1280,
@@ -43,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    color: "white",
   },
 }));
 
@@ -85,12 +85,12 @@ const Navigation = (props) => {
   return (
     <div className={classes.root} style={{ padding: 0, margin: 0 }}>
       <AppBar
-        position="static"
+        position="sticky"
         className={classes.appBar}
         style={{ margin: 0 }}
       >
         <Toolbar className={classes.toolBar}>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h4" className={classes.title}>
             Sweet Tooth Bakery
           </Typography>
           {isMobile ? (
@@ -98,11 +98,11 @@ const Navigation = (props) => {
               <IconButton
                 edge="start"
                 className={classes.menuButton}
-                color="inherit"
                 aria-label="menu"
                 onClick={handleMenu}
+                style={{ backgroundColor: "none" }}
               >
-                <MenuIcon />
+                <MenuIcon size="small" style={{ color: "white" }} />
               </IconButton>
               <Menu
                 id="menu-appbar"
