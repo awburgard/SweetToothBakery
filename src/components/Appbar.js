@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -28,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     color: "var(--lightGrey)",
   },
   appBar: {
-    height: "100%",
     margin: "0",
   },
   toolBar: {
@@ -46,8 +46,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function ElevationScroll(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
+
 const Navigation = (props) => {
-  const { history } = props;
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -59,12 +74,12 @@ const Navigation = (props) => {
   };
 
   const handleMenuClick = (pageURL) => {
-    history.push(pageURL);
+    props.history.push(pageURL);
     setAnchorEl(null);
   };
 
   const handleButtonClick = (pageURL) => {
-    history.push(pageURL);
+    props.history.push(pageURL);
   };
 
   const menuItems = [
@@ -84,78 +99,76 @@ const Navigation = (props) => {
 
   return (
     <div className={classes.root} style={{ padding: 0, margin: 0 }}>
-      <AppBar
-        position="sticky"
-        className={classes.appBar}
-        style={{ margin: 0 }}
-      >
-        <Toolbar className={classes.toolBar}>
-          <Typography variant="h4" className={classes.title}>
-            Sweet Tooth Bakery
-          </Typography>
-          {isMobile ? (
-            <>
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                aria-label="menu"
-                onClick={handleMenu}
-                style={{ backgroundColor: "none" }}
-              >
-                <MenuIcon size="small" style={{ color: "white" }} />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={open}
-                onClose={() => setAnchorEl(null)}
-              >
-                {menuItems.map((menuItem) => {
-                  const { menuTitle, pageURL } = menuItem;
-                  return (
-                    <MenuItem onClick={() => handleMenuClick(pageURL)}>
-                      {menuTitle}
-                    </MenuItem>
-                  );
-                })}
-              </Menu>
-            </>
-          ) : (
-            <List className={classes.headerOptions} component="nav">
-              <ListItem
-                alignItems="flex-start"
-                button
-                onClick={() => handleButtonClick("/")}
-              >
-                Home
-              </ListItem>
-              <ListItem
-                alignItems="flex-start"
-                button
-                onClick={() => handleButtonClick("/contact")}
-              >
-                Contact
-              </ListItem>
-              <ListItem
-                button
-                alignItems="flex-start"
-                onClick={() => handleButtonClick("/about")}
-              >
-                About
-              </ListItem>
-            </List>
-          )}
-        </Toolbar>
-      </AppBar>
+      <ElevationScroll {...props}>
+        <AppBar className={classes.appBar} style={{ margin: 0 }}>
+          <Toolbar className={classes.toolBar}>
+            <Typography variant="h4" className={classes.title}>
+              Sweet Tooth Bakery
+            </Typography>
+            {isMobile ? (
+              <>
+                <IconButton
+                  edge="start"
+                  className={classes.menuButton}
+                  aria-label="menu"
+                  onClick={handleMenu}
+                  style={{ backgroundColor: "none" }}
+                >
+                  <MenuIcon size="small" style={{ color: "white" }} />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={open}
+                  onClose={() => setAnchorEl(null)}
+                >
+                  {menuItems.map((menuItem) => {
+                    const { menuTitle, pageURL } = menuItem;
+                    return (
+                      <MenuItem onClick={() => handleMenuClick(pageURL)}>
+                        {menuTitle}
+                      </MenuItem>
+                    );
+                  })}
+                </Menu>
+              </>
+            ) : (
+              <List className={classes.headerOptions} component="nav">
+                <ListItem
+                  alignItems="flex-start"
+                  button
+                  onClick={() => handleButtonClick("/")}
+                >
+                  Home
+                </ListItem>
+                <ListItem
+                  alignItems="flex-start"
+                  button
+                  onClick={() => handleButtonClick("/contact")}
+                >
+                  Contact
+                </ListItem>
+                <ListItem
+                  button
+                  alignItems="flex-start"
+                  onClick={() => handleButtonClick("/about")}
+                >
+                  About
+                </ListItem>
+              </List>
+            )}
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
     </div>
   );
 };

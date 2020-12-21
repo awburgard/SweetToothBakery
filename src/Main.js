@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: "50%",
     left: "50%",
-    transform: `translate(-50%, -65%)`,
+    transform: `translate(-50%, -59%)`,
   },
   background: {
     backgroundRepeat: "no-repeat",
