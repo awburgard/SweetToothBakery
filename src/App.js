@@ -12,13 +12,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Navigation />
-      {/* <Switch>
-        <Route exact path="/" component={MainLanding} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/about" component={About} />
-      </Switch> */}
       <MainLanding />
       <About />
+      <Contact />
     </ThemeProvider>
   );
 }

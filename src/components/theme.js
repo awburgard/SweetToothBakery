@@ -10,6 +10,7 @@ let theme = createMuiTheme({
     fontFamily: `"Dancing Script", "cursive"`,
     body1: {
       fontFamily: `"EB Garamond", "serif"`,
+      fontSize: 18,
     },
   },
 });
