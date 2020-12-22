@@ -47,7 +47,7 @@ export default function About() {
             </Typography>
             <Typography>
               I'm so glad you decided to stop by! Let me pour you some milk
-              while you nibble on some delicous chocolate chip cookies and I'll
+              while you nibble on some delicious chocolate chip cookies and I'll
               introduce myself!
               <br />
               <br />
