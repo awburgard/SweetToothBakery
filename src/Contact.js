@@ -1,5 +1,5 @@
 // Dependencies
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
 
 // MUI
@@ -23,6 +23,15 @@ export default function Contact() {
     email: "",
     comments: "",
   });
+  const [valid, setValid] = useState(null);
+
+  useEffect(() => {
+    if (contact.email === "") {
+      setValid(true);
+    } else {
+      setValid(false);
+    }
+  }, [contact, valid]);
 
   function sendEmail(e) {
     e.preventDefault();
@@ -85,6 +94,7 @@ export default function Contact() {
 
           <Grid item xs={12}>
             <TextField
+              required
               fullWidth
               label="Email"
               variant="outlined"
@@ -115,6 +125,7 @@ export default function Contact() {
           </Grid>
           <Grid item xs={12}>
             <Button
+              disabled={valid}
               type="submit"
               variant="contained"
               color="secondary"
