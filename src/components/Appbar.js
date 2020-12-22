@@ -7,11 +7,11 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import Link from "@material-ui/core/Link";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,9 +48,6 @@ const useStyles = makeStyles((theme) => ({
 
 function ElevationScroll(props) {
   const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -73,27 +70,18 @@ const Navigation = (props) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuClick = (pageURL) => {
-    props.history.push(pageURL);
-    setAnchorEl(null);
-  };
-
-  const handleButtonClick = (pageURL) => {
-    props.history.push(pageURL);
-  };
-
   const menuItems = [
     {
       menuTitle: "Home",
-      pageURL: "/",
+      pageURL: "#home",
     },
     {
       menuTitle: "About",
-      pageURL: "/about",
+      pageURL: "#about",
     },
     {
       menuTitle: "Contact",
-      pageURL: "/contact",
+      pageURL: "#contact",
     },
   ];
 
@@ -134,8 +122,8 @@ const Navigation = (props) => {
                   {menuItems.map((menuItem) => {
                     const { menuTitle, pageURL } = menuItem;
                     return (
-                      <MenuItem onClick={() => handleMenuClick(pageURL)}>
-                        {menuTitle}
+                      <MenuItem>
+                        <Link href={pageURL}>{menuTitle}</Link>
                       </MenuItem>
                     );
                   })}
@@ -143,26 +131,20 @@ const Navigation = (props) => {
               </>
             ) : (
               <List className={classes.headerOptions} component="nav">
-                <ListItem
-                  alignItems="flex-start"
-                  button
-                  onClick={() => handleButtonClick("/")}
-                >
-                  Home
+                <ListItem alignItems="flex-start" button>
+                  <Link href="#home" color="inherit">
+                    Home
+                  </Link>
                 </ListItem>
-                <ListItem
-                  button
-                  alignItems="flex-start"
-                  onClick={() => handleButtonClick("/about")}
-                >
-                  About
+                <ListItem button alignItems="flex-start">
+                  <Link href="#about" color="inherit">
+                    About
+                  </Link>
                 </ListItem>
-                <ListItem
-                  alignItems="flex-start"
-                  button
-                  onClick={() => handleButtonClick("/contact")}
-                >
-                  Contact
+                <ListItem alignItems="flex-start" button>
+                  <Link href="#contact" color="inherit">
+                    Contact
+                  </Link>
                 </ListItem>
               </List>
             )}
@@ -173,4 +155,4 @@ const Navigation = (props) => {
   );
 };
 
-export default withRouter(Navigation);
+export default Navigation;

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MainLanding() {
   const classes = useStyles();
   return (
-    <Grid container>
+    <Grid container id="home">
       <Grid item xs={12}>
         <Box className={classes.container}>
           <Box variant="section" className={classes.background}>

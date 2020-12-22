@@ -1,7 +1,6 @@
 import theme from "./components/theme";
 
 import { ThemeProvider } from "@material-ui/core";
-import { Route, Switch } from "react-router-dom";
 
 import Navigation from "./components/Appbar";
 import MainLanding from "./Main";

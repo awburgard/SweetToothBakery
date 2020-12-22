@@ -50,7 +50,7 @@ export default function Contact() {
   }
 
   return (
-    <Container>
+    <Container id="contact">
       <Breaker title={"Contact"} />
       <form onSubmit={sendEmail}>
         <Grid container spacing={3} justify="center" alignItems="center">
