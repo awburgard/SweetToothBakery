@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center -15px",
     backgroundAttachment: "scroll",
     backgroundSize: "cover",
-    maxWidth: 1600,
     minHeight: 497,
     padding: 0,
     backgroundImage: `url(https://source.unsplash.com/rkT_TG5NKF8/1600x900)`,

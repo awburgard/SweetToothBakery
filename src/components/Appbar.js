@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
   toolBar: {
     padding: "0px 30px",
     margin: "0",
-    maxWidth: 1280,
     display: "flex",
     justifyContent: "space-between",
   },
@@ -129,7 +128,7 @@ const Navigation = (props) => {
                   {menuItems.map((menuItem) => {
                     const { menuTitle, pageURL } = menuItem;
                     return (
-                      <MenuItem key={menuTitle}>
+                      <MenuItem key={menuTitle} onClick={() => {}}>
                         <Link href={pageURL}>{menuTitle}</Link>
                       </MenuItem>
                     );
