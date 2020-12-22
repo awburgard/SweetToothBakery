@@ -70,6 +70,11 @@ const Navigation = (props) => {
     setAnchorEl(event.currentTarget);
   };
 
+  const scrollInto = (id) => {
+    const el = document.getElementById(id);
+    el.scrollIntoView(true);
+  };
+
   const menuItems = [
     {
       menuTitle: "Home",
@@ -122,7 +127,7 @@ const Navigation = (props) => {
                   {menuItems.map((menuItem) => {
                     const { menuTitle, pageURL } = menuItem;
                     return (
-                      <MenuItem>
+                      <MenuItem key={menuTitle}>
                         <Link href={pageURL}>{menuTitle}</Link>
                       </MenuItem>
                     );
@@ -131,20 +136,26 @@ const Navigation = (props) => {
               </>
             ) : (
               <List className={classes.headerOptions} component="nav">
-                <ListItem alignItems="flex-start" button>
-                  <Link href="#home" color="inherit">
-                    Home
-                  </Link>
+                <ListItem
+                  alignItems="flex-start"
+                  button
+                  onClick={() => scrollInto("home")}
+                >
+                  Home
                 </ListItem>
-                <ListItem button alignItems="flex-start">
-                  <Link href="#about" color="inherit">
-                    About
-                  </Link>
+                <ListItem
+                  button
+                  alignItems="flex-start"
+                  onClick={() => scrollInto("about")}
+                >
+                  About
                 </ListItem>
-                <ListItem alignItems="flex-start" button>
-                  <Link href="#contact" color="inherit">
-                    Contact
-                  </Link>
+                <ListItem
+                  alignItems="flex-start"
+                  button
+                  onClick={() => scrollInto("contact")}
+                >
+                  Contact
                 </ListItem>
               </List>
             )}

@@ -21,7 +21,16 @@ const useStyles = makeStyles((theme) => ({
 export default function About() {
   const classes = useStyles();
   return (
-    <Container id="about">
+    <Container>
+      <div
+        id="about"
+        style={{
+          display: "block",
+          height: 92,
+          marginTop: -92,
+          visibility: "hidden",
+        }}
+      ></div>
       <Breaker title={"About"} />
       <Box className={classes.intro}>
         <Grid container spacing={2}>

@@ -59,7 +59,16 @@ export default function Contact() {
   }
 
   return (
-    <Container id="contact">
+    <Container>
+      <div
+        id="contact"
+        style={{
+          display: "block",
+          height: 92,
+          marginTop: -92,
+          visibility: "hidden",
+        }}
+      ></div>
       <Breaker title={"Contact"} />
       <form onSubmit={sendEmail}>
         <Grid container spacing={3} justify="center" alignItems="center">
