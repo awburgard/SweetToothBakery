@@ -88,12 +88,12 @@ const Navigation = (props) => {
       pageURL: "/",
     },
     {
-      menuTitle: "Contact",
-      pageURL: "/contact",
-    },
-    {
       menuTitle: "About",
       pageURL: "/about",
+    },
+    {
+      menuTitle: "Contact",
+      pageURL: "/contact",
     },
   ];
 
@@ -151,18 +151,18 @@ const Navigation = (props) => {
                   Home
                 </ListItem>
                 <ListItem
-                  alignItems="flex-start"
-                  button
-                  onClick={() => handleButtonClick("/contact")}
-                >
-                  Contact
-                </ListItem>
-                <ListItem
                   button
                   alignItems="flex-start"
                   onClick={() => handleButtonClick("/about")}
                 >
                   About
+                </ListItem>
+                <ListItem
+                  alignItems="flex-start"
+                  button
+                  onClick={() => handleButtonClick("/contact")}
+                >
+                  Contact
                 </ListItem>
               </List>
             )}

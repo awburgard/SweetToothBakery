@@ -5,10 +5,17 @@ let theme = createMuiTheme({
     primary: {
       main: "#60a69f",
     },
+    secondary: {
+      main: "#fe7095",
+    },
   },
   typography: {
     fontFamily: `"Dancing Script", "cursive"`,
     body1: {
+      fontFamily: `"EB Garamond", "serif"`,
+      fontSize: 18,
+    },
+    button: {
       fontFamily: `"EB Garamond", "serif"`,
       fontSize: 18,
     },
