@@ -27,7 +27,7 @@ export default function About() {
         style={{
           display: "block",
           height: 92,
-          marginTop: -92,
+          marginTop: -64,
           visibility: "hidden",
         }}
       ></div>

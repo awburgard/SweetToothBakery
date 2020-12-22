@@ -72,7 +72,9 @@ const Navigation = (props) => {
 
   const scrollInto = (id) => {
     const el = document.getElementById(id);
-    el.scrollIntoView(true);
+    el.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   const menuItems = [
